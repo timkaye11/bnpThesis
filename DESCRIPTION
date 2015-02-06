@@ -1,0 +1,13 @@
+Package: bnpThesis
+Title: Functions used for my thesis on non-parametric Bayesian clustering and classification
+Version: 0.1
+Authors@R: "Tim Kaye <timothy.kaye@pomona.edu> [aut, cre]"
+Description: This package contains functions that I wrote for my thesis on non-parametric Bayesian applications. It includes infinite dimensional clustering, 
+  chinese restaurant processes, classification via Dirichlet Process Gibbs Sampling, and many more! 
+Depends: R (>= 3.1.2)
+License: MIT + file LICENSE 
+LazyData: true
+Imports: 
+  dplyr, 
+  ggplot2,
+    tidyr
