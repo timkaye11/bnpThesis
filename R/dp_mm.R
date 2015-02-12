@@ -24,8 +24,8 @@ dp_mm <- structure(list(), class = "dp_mm")
 #' output <- dp_mm(x, alpha_0=5,num_iters=100) 
 #' plot(output)
 #' summary(output)
-#'
-dp_mm <- function(data,alpha_0,num_iters=100, burnin=50,useSM=FALSE ...) {
+
+dp_mm <- function(data,alpha_0,num_iters=100, burnin=50,useSM=FALSE, ...) {
   if (!is.numeric(data) | alpha_0 == 0) stop("Mixture model not properly initialized")
   # If our data is normal, we can put a normal prior on the mean 
   # and an independent Γ prior on the reciprocal of the variance
@@ -87,7 +87,7 @@ dp_mm <- function(data,alpha_0,num_iters=100, burnin=50,useSM=FALSE ...) {
       for (i in which(N != 0)) {
         y <- y + N[i] * dnorm(x_range, Phi[i,"mean"], Phi[i, "var"])
       }
-      lines(x_range, y, col="red"), ...)
+      lines(x_range, y, col="red", ...)
 
       # save relevant info
       post <- list()
@@ -189,8 +189,8 @@ plot.dp_mm <- function(obj, ...) {
   min_max <- range(obj$data)
   x_range <- seq(min_max[1], min_max[2], 0.1)
   y <- rep(0, length(x_range))
-  for (i in which(N != 0)) {
-        y <- y + N[i] * dnorm(x_range, Phi[i,"mean"], Phi[i, "var"])
+  for (i in which(obj$N != 0)) {
+        y <- y + obj$N[i] * dnorm(x_range, obj$Phi[i,"mean"], obj$Phi[i, "var"])
   }
   lines(x_range, y, ...)
 }
